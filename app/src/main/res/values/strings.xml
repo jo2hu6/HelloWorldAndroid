@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">HelloWorld</string>
+    <string name="main_text">ESTA ES MI PRIMERA APP EN ANDROID</string>
+    <string name="click_me">Haz Click!</string>
+</resources>

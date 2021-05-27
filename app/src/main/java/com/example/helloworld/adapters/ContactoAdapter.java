@@ -64,7 +64,7 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
                 Uri uri = Uri.parse("cel: "+contacto.Numero);
                 Intent intent = new Intent(Intent.ACTION_SENDTO);
                 intent.putExtra("Mensaje de texto","");
-                startActivity(view.getContext(), intent, bundle);
+                startActivity(view.getContext(), intent, bundle); //ERROR!!
 
             }
         });

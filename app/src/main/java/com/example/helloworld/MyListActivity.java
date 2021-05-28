@@ -33,12 +33,12 @@ public class MyListActivity extends AppCompatActivity {
     private List<Contacto> GetContactos() {
         List<Contacto> contactos = new ArrayList<>();
 
-        contactos.add(new Contacto("Hola","11111"));
-        contactos.add(new Contacto("Hola2","222222"));
-        contactos.add(new Contacto("Hola3","33333"));
-        contactos.add(new Contacto("Hola4","44444"));
-        contactos.add(new Contacto("Hola5","55555"));
-        contactos.add(new Contacto("Hola6","666666"));
+        contactos.add(new Contacto("Hola","11111", "11111", "1111111"));
+        contactos.add(new Contacto("Hola2","222222", "gmail", "222222"));
+        contactos.add(new Contacto("Hola3","33333", "33333", "33333"));
+        contactos.add(new Contacto("Hola4","44444", "44444", "44444"));
+        contactos.add(new Contacto("Hola5","55555", "55555", "55555"));
+        contactos.add(new Contacto("Hola6","666666", "666666", "666666"));
 
         return contactos;
     }

@@ -1,27 +1,22 @@
 package com.example.helloworld.adapters;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresPermission;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.helloworld.DetailContactActivity;
 import com.example.helloworld.R;
 import com.example.helloworld.entities.Contacto;
 
 import java.util.List;
-
-import static androidx.core.content.ContextCompat.startActivity;
 
 public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.ContactoViewHolder>{
 
@@ -51,25 +46,33 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
 
         TextView tvNombre = view.findViewById(R.id.tvNombre);
         TextView tvNumero = view.findViewById(R.id.tvNumero);
-        Button btnSMS = view.findViewById(R.id.btnSMS);
+        ImageView iv = view.findViewById(R.id.imgOvni);
 
+        iv.setImageResource(R.drawable.images);
         tvNombre.setText(contacto.Nombre);
         tvNumero.setText(contacto.Numero);
 
-        btnSMS.setOnClickListener(new View.OnClickListener() {
+        view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i("main_app","Abriendo SMS: " + contacto.Numero);
-                Bundle bundle = new Bundle();
-                Uri uri = Uri.parse("cel: "+contacto.Numero);
+                /*Uri uri = Uri.parse("cel: ");
                 Intent intent = new Intent(Intent.ACTION_SENDTO);
-                intent.putExtra("Mensaje de texto","");
-                startActivity(view.getContext(), intent, bundle); //ERROR!!
+                intent.putExtra("Mensaje de texto","Mensajeeee"); //ERROR!!
+                view.getContext().startActivity(intent);*/
+
+                Intent intent = new Intent(view.getContext(), DetailContactActivity.class);
+                intent.putExtra("nombre", contacto.Nombre);
+                intent.putExtra("numero", contacto.Numero);
+                intent.putExtra("email", contacto.Email);
+                intent.putExtra("direccion", contacto.Direccion);
+                view.getContext().startActivity(intent);
 
             }
         });
 
     }
+
 
     @Override
     public int getItemCount() {

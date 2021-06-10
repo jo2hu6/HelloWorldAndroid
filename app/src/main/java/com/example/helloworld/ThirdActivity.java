@@ -27,7 +27,7 @@ public class ThirdActivity extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tv.append(String.valueOf("1"));
+                tv.append("1");
             }
         });
 

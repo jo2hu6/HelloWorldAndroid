@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class SecondActivity extends AppCompatActivity {
@@ -13,11 +15,18 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
-        Intent intent = getIntent();
-        String name = intent.getStringExtra("NAME_EXTRA");
+        Button btnSubmit = findViewById(R.id.btnSubmitForm);
 
-        TextView tvTitle = findViewById(R.id.tvTitle);
-        tvTitle.setText("Hola "+name);
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = getIntent();
+                String name = intent.getStringExtra("NAME_EXTRA");
+
+                TextView tvTitle = findViewById(R.id.tvTitle);
+                tvTitle.setText("Hola "+name);
+            }
+        });
 
     }
 }

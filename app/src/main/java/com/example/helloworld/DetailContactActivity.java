@@ -8,14 +8,10 @@ import android.widget.TextView;
 
 public class DetailContactActivity extends AppCompatActivity {
 
-    private static final String TAG = "DetailContactActivity";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contact_detail);
-
-        Log.d(TAG, "onCreate: started.");
 
         getIncomingIntent();
 

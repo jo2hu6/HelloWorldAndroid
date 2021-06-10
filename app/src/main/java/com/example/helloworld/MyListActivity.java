@@ -1,17 +1,20 @@
 package com.example.helloworld;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import com.example.helloworld.adapters.ContactoAdapter;
-import com.example.helloworld.adapters.PalabraAdapter;
 import com.example.helloworld.entities.Contacto;
+import com.example.helloworld.services.ContactService;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MyListActivity extends AppCompatActivity {
 
@@ -20,13 +23,37 @@ public class MyListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_list);
 
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://webhook.site/") //https://run.mocky.io/
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ContactService service = retrofit.create(ContactService.class); // instanciar servicio
+
+        // Call<Void> contactsCall = service.testGet("Josue", "Rivera");//llamar metodo del servicio que retorna un Call
+
+        Contacto contacto = new Contacto("Josue", "99999");
+        Call<Void> contactsCall = service.testPostVoid(contacto);
+
+        contactsCall.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                //codigo que recibe al haber esperado el call
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+
+        /*List<Contacto> contactos = response.body();
+
         RecyclerView rv = findViewById(R.id.rvPalabras);
         rv.setLayoutManager(new LinearLayoutManager(MyListActivity.this));//es obligatorio
 
-        List<Contacto> contactos = GetContactos();
-
         ContactoAdapter adapter = new ContactoAdapter(contactos);
-        rv.setAdapter(adapter);
+        rv.setAdapter(adapter);*/
 
     }
 
